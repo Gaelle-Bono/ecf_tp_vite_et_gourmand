@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ menu.title }}{% endblock %}
+
+{% block body %}
+
+    {# Titre de la page #}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ menu.title }}</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <p>
+            {{ menu.description|nl2br }}
+        </p>
+    </div>
+
+    <a href="{{ path('app_menu_index') }}">Liste des menus</a>
+
+    {# <a href="{{ path('app_menu_command', {'id': menu.id}) }}">commander</a> #}
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

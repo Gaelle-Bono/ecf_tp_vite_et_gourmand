@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des menus{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        {# page title#}
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Liste des menus</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Nombre minimum de personnes</th>
+                    <th scope="col">Prix associé au nombre minimum de personnes</th>
+                    <th scope="col">{# action Bouton - Show Details #}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for menu in menus %}
+                <tr>
+                    <th scope="row">
+                        {{ menu.title }}
+                    </th>
+                    <td>
+                        {{ menu.description|nl2br }}
+                    </td>
+                    <td>
+                        {{ menu.minimumNumberOfPeople }}
+                    </td>
+                    <td>
+                        {{ menu.pricePerPerson * menu.minimumNumberOfPeople }}
+                    </td>
+                    <td>
+                        <a href="{{ path('app_menu_show', {'id': menu.id}) }}" role="button" class="btn btn-info">Détails du menu</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

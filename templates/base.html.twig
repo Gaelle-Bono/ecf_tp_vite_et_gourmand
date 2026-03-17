@@ -12,39 +12,45 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                        Vite et Gourmand
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link" href="{{ path('index') }}">Page d'accueil</a>
-                        <a class="nav-link" href="#">Menus</a>
-                        <a class="nav-link" href="{{ path('app_register') }}">Enregistrement</a>
-                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                        <a class="nav-link" href="#">Contact</a>
+        <header>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                            Vite et Gourmand
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link" href="{{ path('index') }}">Page d'accueil</a>
+                            <a class="nav-link" href="{{ path('app_menu_index') }}">Menus</a>
+                            <a class="nav-link" href="{{ path('app_register') }}">Enregistrement</a>
+                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            <a class="nav-link" href="#">Contact</a>
+                        </div>
                     </div>
                 </div>
+            </nav>
+
+            <div class="container mt-4">
+                {% if app.user %}
+                    <div class="mb-3">
+                        Vous êtes connecté(e) en tant que {{ app.user.userIdentifier }}. <a href="{{ logout_path() }}">Déconnexion</a>
+                    </div>
+                {% endif %}
             </div>
-        </nav>
-        <main class="container mt-4">
-            {% if app.user %}
-                <div class="mb-3">
-                    Vous êtes connecté(e) en tant que {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Déconnexion</a>
-                </div>
-            {% endif %}
-            {% block body %}{% endblock %}
+        </header>
+        <main>
+            {% block body %}
+            {% endblock %}
         </main>
-         <footer>
+        <footer>
             <p class="text-center mt-4">© 2026 Vite et Gourmand. Tous droits réservés.</p>
-            <p>horaires : du lundi au dimanche</p>
-            <p><a href="#">Mentions légales</a></p>
-            <p><a href="#">Conditions générales de vente</a></p>
+                <p>horaires : du lundi au dimanche</p>
+                <p><a href="#">Mentions légales</a></p>
+                <p><a href="#">Conditions générales de vente</a></p>
         </footer>
     </body>
 </html>
